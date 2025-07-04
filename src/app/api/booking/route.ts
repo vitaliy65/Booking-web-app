@@ -78,6 +78,11 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    // Добавить создателя в участники
+    await prisma.bookingParticipant.create({
+      data: { bookingId: booking.id, userId: payload.userId },
+    });
+
     return NextResponse.json(booking);
   } catch {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
@@ -164,6 +169,11 @@ export async function DELETE(req: NextRequest) {
         { status: 403 }
       );
     }
+
+    // Удаляем всех участников этого бронирования
+    await prisma.bookingParticipant.deleteMany({
+      where: { bookingId: id },
+    });
 
     await prisma.booking.delete({ where: { id } });
 

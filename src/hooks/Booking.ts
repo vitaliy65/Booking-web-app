@@ -130,9 +130,11 @@ export function useBooking(roomId: number) {
     createBooking: create.mutateAsync,
     createStatus: create.status,
     createError: create.error,
+
     updateBooking: update.mutateAsync,
     updateStatus: update.status,
     updateError: update.error,
+
     deleteBooking: remove.mutateAsync,
     deleteStatus: remove.status,
     deleteError: remove.error,
