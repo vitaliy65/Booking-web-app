@@ -1,0 +1,50 @@
+/* Booking.css - TailwindCSS utility classes for Booking components */
+
+.booking-list {
+  @apply p-6 bg-white rounded-lg shadow-md space-y-4;
+}
+
+.booking-card {
+  @apply p-4 bg-gray-50 rounded-md border border-gray-200 mb-4 flex flex-col gap-2;
+}
+
+.booking-actions {
+  @apply flex gap-2 mt-2;
+}
+
+.booking-actions button {
+  @apply px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600 transition;
+}
+
+.booking-actions button:last-child {
+  @apply bg-red-500 hover:bg-red-600;
+}
+
+.booking-form {
+  @apply flex flex-col gap-4 p-4 bg-gray-100 rounded-md border border-gray-200 mb-4;
+}
+
+.booking-form label {
+  @apply block font-semibold mb-1;
+}
+
+.booking-form input[type="datetime-local"],
+.booking-form input[type="text"] {
+  @apply w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400;
+}
+
+.form-error {
+  @apply text-red-500 text-sm mt-1;
+}
+
+.form-actions {
+  @apply flex gap-2 mt-2;
+}
+
+.form-actions button {
+  @apply px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition;
+}
+
+.form-actions button[type="button"] {
+  @apply bg-gray-400 hover:bg-gray-500;
+}

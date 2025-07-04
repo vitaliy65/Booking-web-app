@@ -1,0 +1,61 @@
+/* MeetingRoomGrid styles */
+.meeting-room-section {
+  @apply w-full mx-auto px-2 flex flex-col items-center justify-center gap-8;
+}
+
+.room-not-found-text {
+  @apply w-full text-center text-gray-400 py-10 text-lg;
+}
+
+/* meeting room card */
+.room-card {
+  @apply bg-white rounded-xl shadow-md p-6 flex flex-col gap-3 border border-gray-200 relative transition hover:shadow-lg;
+}
+.room-title {
+  @apply text-xl font-bold mb-1 text-blue-700;
+}
+.room-description {
+  @apply text-gray-600 mb-2;
+}
+.room-date-info {
+  @apply text-xs text-gray-400 mt-auto flex flex-col gap-1;
+}
+.room-actions {
+  @apply flex flex-row gap-3;
+}
+.room-action-edit {
+  @apply flex justify-center items-center text-black rounded-md bg-amber-500/30 w-8 h-8 cursor-pointer hover:scale-105;
+}
+.room-action-delete {
+  @apply flex justify-center items-center text-black rounded-md bg-red-500/30 w-8 h-8 cursor-pointer hover:scale-105;
+}
+.room-edit-input {
+  @apply border rounded px-2 py-1 text-sm;
+}
+
+/* create form for meeting rooms */
+.create-room-form {
+  @apply mt-10 mb-8 max-w-xl justify-center items-center bg-white dark:bg-gray-900 rounded-xl 
+      shadow-md border border-gray-200 dark:border-gray-800 p-6 flex flex-col gap-4;
+}
+
+.create-room-form-title {
+  @apply text-2xl font-bold mb-2 text-gray-800 dark:text-gray-100;
+}
+
+.form-input-container {
+  @apply flex flex-col gap-4 w-full;
+}
+
+.create-room-form-input-field {
+  @apply flex-1 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 
+           focus:ring-blue-500 dark:bg-gray-800 dark:text-white transition;
+}
+
+.create-room-form-button {
+  @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg px-6 py-2 transition disabled:opacity-50 disabled:cursor-not-allowed shadow;
+}
+
+.create-form-error-message {
+  @apply text-red-500 text-sm;
+}
