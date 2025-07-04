@@ -74,7 +74,7 @@ export function useMeetingRoom() {
   // Получить все комнаты
   const {
     data: rooms,
-    isLoading,
+    isPending,
     isError,
     error,
     refetch,
@@ -106,7 +106,7 @@ export function useMeetingRoom() {
 
   return {
     rooms,
-    isLoading,
+    isRoomsPending: isPending,
     isError,
     error,
     refetch,

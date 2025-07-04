@@ -9,7 +9,7 @@
 
 /* meeting room card */
 .room-card {
-  @apply bg-white rounded-xl shadow-md p-6 flex flex-col gap-3 border border-gray-200 relative transition hover:shadow-lg;
+  @apply bg-white rounded-xl shadow-md p-6 flex flex-col gap-3 w-full border border-gray-200 relative transition hover:shadow-lg;
 }
 .room-title {
   @apply text-xl font-bold mb-1 text-blue-700;

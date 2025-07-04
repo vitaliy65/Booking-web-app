@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -85,7 +86,7 @@ export function useUser() {
   });
 
   return {
-    user,
+    user: user as User,
     isLoading,
     isError,
     error,

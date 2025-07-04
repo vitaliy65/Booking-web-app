@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Booking } from "@/types/types";
 import { useBooking } from "@/hooks/Booking";
 import { useUser } from "@/hooks/User";
 import { BookingCard } from "./BookingCard";
 import { BookingForm } from "./BookingForm";
 import { useRouter } from "next/navigation";
+import { useRoomUserRole } from "@/hooks/RoomUserRole";
 
 interface BookingListProps {
   roomId: number;
@@ -18,9 +19,24 @@ export function BookingList({ roomId }: BookingListProps) {
   const { user } = useUser();
   const [editingId, setEditingId] = useState<number | null>(null);
   const [creating, setCreating] = useState(false);
+  const { roles, isUserRolePending } = useRoomUserRole(roomId);
+  const [canEdit, setCanEdit] = useState(true);
   const router = useRouter();
 
-  if (isLoading) return <div>Завантаження бронювань...</div>;
+  useEffect(() => {
+    if (!roles) return;
+
+    roles.map((role) => {
+      if (role.meetingRoomId == roomId) {
+        if (role.role === "USER" && role.userId === user.id) {
+          setCanEdit(false);
+        }
+      }
+    });
+  }, [roomId, roles, user]);
+
+  if (isLoading || isUserRolePending)
+    return <div>Завантаження бронювань...</div>;
 
   return (
     <div className="w-full max-w-2xl mx-auto p-4 bg-white rounded-xl shadow-lg mt-4 flex flex-col gap-4">
@@ -32,12 +48,14 @@ export function BookingList({ roomId }: BookingListProps) {
       </button>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
         <h3 className="text-2xl font-bold text-gray-800">Бронювання</h3>
-        <button
-          onClick={() => setCreating(true)}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
-        >
-          Додати бронювання
-        </button>
+        {canEdit && (
+          <button
+            onClick={() => setCreating(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+          >
+            Додати бронювання
+          </button>
+        )}
       </div>
       {creating && (
         <BookingForm
@@ -68,7 +86,7 @@ export function BookingList({ roomId }: BookingListProps) {
               <BookingCard
                 key={booking.id}
                 booking={booking}
-                isOwn={user && user.id === booking.userId}
+                isOwn={canEdit}
                 onEdit={() => setEditingId(booking.id)}
                 onDelete={async () => await deleteBooking(booking.id)}
               />
